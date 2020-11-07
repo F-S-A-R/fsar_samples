@@ -6,7 +6,8 @@ services:
     
     # Slightly faster headless version
     #image: selenium/standalone-chrome    
-    
+
+    network_mode: "host"
     ports:
       - "5900:5900" #for VNC access
       - "4444:4444" #for webdriver access
