@@ -14,6 +14,7 @@ services:
 
   ruby:
     build: .
+    image: "richdownie/fsar_samples"
     volumes:
       - .:/app
     depends_on: 
