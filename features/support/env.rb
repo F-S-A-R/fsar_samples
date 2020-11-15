@@ -20,5 +20,5 @@ Capybara.configure do |config|
   else
     config.default_driver = :docker_chrome
   end
-  config.app_host = 'http://localhost:3000' # change this to point to your application
+  config.app_host = 'http://localhost:3044' # change this to point to your application
 end
