@@ -20,9 +20,9 @@ After do |scenario|
   @steps = scenario.test_steps.map{|step| step.text if !ignored_lines.include?(step.text) }.compact.join("\n")
   IO.popen("git symbolic-ref --short HEAD") {|pipe| @git_branch = pipe.read }
   IO.popen("git rev-parse --verify HEAD") {|pipe| @git_sha = pipe.read }
-  headers = { "Authorization" => "Token token=\"#{@cukehub_api_key}\""}
+  headers = {"Content-Type": "application/json"}
   params = {
-    name:   scenario.name,
+    scenario_name: scenario.name,
     location: scenario.location,
     tag: scenario.source_tag_names,
     status: scenario.status,
@@ -46,5 +46,5 @@ After do |scenario|
   end
   params[:exception]=scenario.exception.backtrace.compact.join("\n") unless scenario.passed?
 
-  # HTTParty.post("https://localhost:3044.com/api/v1/results", headers: headers, body: params, verify: false)
+  HTTParty.post("http://localhost:3044/api/v1/results", headers: headers, body: params.to_json, verify: false)
 end

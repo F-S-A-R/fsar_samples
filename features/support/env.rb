@@ -3,6 +3,7 @@ require 'capybara/cucumber'
 require 'selenium-webdriver'
 require 'pry'
 require 'webdrivers'
+require 'httparty'
 #get IP of host which has 4444 mapped from other container
 docker_ip = %x(/sbin/ip route|awk '/default/ { print $3 }').strip
 
